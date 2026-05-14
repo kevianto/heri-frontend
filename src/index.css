@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #d4ff70; /* Lime green active color */
+  --color-action: #ffcc80;  /* Peach/Gold confirm color */
+  --color-bg-dark: #121212;
+  --color-card-dark: #1e1e1e;
+  --color-accent-blue: #2196f3;
+  --color-accent-green: #4caf50;
+  --color-accent-purple: #9c27b0;
+}
+
+:root {
+  background-color: #000000;
+  color: white;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #000000;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  max-width: 500px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color: #121212;
+  position: relative;
+}
+
+/* Specific UI Patterns */
+.main-content-card {
+  @apply bg-white rounded-t-[2.5rem] mt-4 min-h-[calc(100vh-120px)] p-6 text-black;
+}
+
+.level-1-gradient {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.level-2-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.level-3-gradient {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.balance-card-gradient {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  animation: marquee 15s linear infinite;
+  display: inline-block;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+  display: inline-block;
+}
+
+/* Hide scrollbar but keep functionality */
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
