@@ -1,5 +1,5 @@
 
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Team from './pages/Team';
@@ -14,12 +14,31 @@ import SelectCurrency from './pages/SelectCurrency';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 
+// Protected Route Component
+const ProtectedRoute = ({ children }) => {
+  const token = localStorage.getItem('token');
+  const location = useLocation();
+
+  if (!token) {
+    // Redirect to login if no token is found
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  return children;
+};
+
 function App() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/" element={<Layout />}>
+      
+      {/* Protect all routes within the Layout */}
+      <Route path="/" element={
+        <ProtectedRoute>
+          <Layout />
+        </ProtectedRoute>
+      }>
         <Route index element={<Home />} />
         <Route path="team" element={<Team />} />
         <Route path="vip" element={<VIP />} />
@@ -29,6 +48,7 @@ function App() {
         <Route path="withdraw" element={<Withdraw />} />
         <Route path="change-password" element={<ChangePassword />} />
       </Route>
+
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );
